@@ -1,0 +1,13 @@
+Assignment 1 is based on transforming a large dataset in text format - over 5000 lines of text.
+
+You will need to read in a file, scrub (clean) the data, place it into the relevant holder/container objects and save the output in a csv format.
+
+Once in these objects you will see that there are 422 different sets of commit objects.
+
+The deadline is the 10th December 2017 on moodle @ 23:55.
+
+
+
+seperated commit messages by 72 hypens
+
+for line in x, member variables. commit objects, changed path could be a single cell.
