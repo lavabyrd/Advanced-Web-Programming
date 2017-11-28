@@ -72,7 +72,7 @@ namespace StreamsIntro
         private void btnReadFile_Click(object sender, EventArgs e)
         {
             // Here we create a source backing store
-            using (Stream fileStream = new FileStream(@"C:\AdvProg\AdvProg.txt", FileMode.Open))
+            using (Stream fileStream = new FileStream(@"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/StreamsIntro/File.txt", FileMode.Open))
             {
                 // First we read a simple byte from the stream...
                 int valueRead = fileStream.ReadByte();
