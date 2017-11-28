@@ -10,4 +10,17 @@ The deadline is the 10th December 2017 on moodle @ 23:55.
 
 seperated commit messages by 72 hypens
 
+seek, see for next lines , read into array, indexOf
+
 for line in x, member variables. commit objects, changed path could be a single cell.
+
+look out for commas!
+
+while !eof search for 72 hyphens
+then split next line into
+revision numbers/author, datetime, #of comments, 
+search for empty lines
+comment = index + 1:
+changes paths = lines between changed paths and blank line
+
+repeat ^
