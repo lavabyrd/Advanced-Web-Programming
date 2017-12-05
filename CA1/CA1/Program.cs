@@ -6,7 +6,19 @@ namespace CA1
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            string[] lines = System.IO.File.ReadAllLines(@"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/commit_changes.txt");
+            int count = 0;
+            foreach (string line in lines)
+            {
+                // Use a tab to indent each line of the file.
+                //Console.WriteLine("\t" + line);
+                count += 1;
+            }
+            Console.WriteLine(count);
+            // Keep the console window open in debug mode.
+            Console.WriteLine("Press any key to exit.");
+            System.Console.ReadKey();
         }
     }
 }
