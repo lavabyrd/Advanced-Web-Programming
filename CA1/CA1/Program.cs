@@ -13,7 +13,13 @@ namespace CA1
             {
                 // Use a tab to indent each line of the file.
                 //Console.WriteLine("\t" + line);
-                count += 1;
+                if (line == "------------------------------------------------------------------------")
+                {
+                    count += 1;
+                }
+                else {
+                    count +=0;
+                }
             }
             Console.WriteLine(count);
             // Keep the console window open in debug mode.
