@@ -41,6 +41,8 @@
       <IncludeInPackage>true</IncludeInPackage>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="output.txt" />
+    <None Include="output.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
