@@ -44,51 +44,30 @@ namespace CA1
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo directory = new DirectoryInfo(currentDirectory);
             var fileName = Path.Combine(directory.FullName, "commit_changes.txt");
-            var file = new FileInfo(fileName);
-            Console.WriteLine(file);
-            if(file.Exists) 
-            {
-                using(var reader = new StreamReader(fileName))
-                {
-                    Console.SetIn(reader);
-                    Console.WriteLine(Console.ReadLine());
-                }
-            }
-            else{
-                Console.WriteLine("No file found!");
-            }
-
-
+            var fileContents = ReadCommitLines(fileName);
         }
 
-
-
-
-        private static void CreateSecondFile()
+        public static string ReadFile(string fileName)
         {
-            if (!File.Exists(pathOut))// same as if(File.Exists(FILE_PATH2) == false)
-            {
-                using (TextWriter txtWriter = File.CreateText(pathOut))
-                {
-                    txtWriter.WriteLine("File number 2");
-                    txtWriter.Write('A');
-                    txtWriter.WriteLine(" short story...");
-                }
+            using (var reader = new StreamReader(fileName)){
+                return reader.ReadToEnd();
             }
         }
 
-        private static void AppendText()
+        public static List<string[]> ReadCommitLines(string fileName) 
         {
-            if (File.Exists(pathOut))
+            var lines = new List<string[]>();
+            using (var reader = new StreamReader(fileName))
             {
-                using (TextWriter txtWriter = File.AppendText(pathOut))
+                string line = "";
+                while ((line = reader.ReadLine()) != null)
                 {
-                    txtWriter.WriteLine("Appended some text here");
+                    string[] values = line.Split(new[] { " | " }, StringSplitOptions.None);
+                    lines.Add(values);
                 }
             }
+            return lines;
         }
-
-
 
     }
 }
