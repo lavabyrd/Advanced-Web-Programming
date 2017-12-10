@@ -11,7 +11,7 @@ namespace CA1
     class MainClass
     {
 
-        static readonly string pathOut = @"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/output.csv";
+        //static readonly string pathOut = @"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/output.csv";
         //static readonly string pathIn = @"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/commit_changes.txt";
 
         public static void Main(string[] args)
@@ -44,7 +44,19 @@ namespace CA1
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo directory = new DirectoryInfo(currentDirectory);
             var fileName = Path.Combine(directory.FullName, "commit_changes.txt");
-            var fileContents = ReadCommitLines(fileName);
+            var fileContents = ReadFile(fileName);
+            string splitString = "------------------------------------------------------------------------\n";
+            string[] fileLines = fileContents.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var line in fileLines)
+            {
+                string[] commitLines = line.Split(new string[] { " | " }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var i in commitLines)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
         }
 
         public static string ReadFile(string fileName)
