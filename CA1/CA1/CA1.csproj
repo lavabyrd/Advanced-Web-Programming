@@ -34,14 +34,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="commit_changes.txt">
       <IncludeInPackage>true</IncludeInPackage>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="output.txt" />
     <None Include="output.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
