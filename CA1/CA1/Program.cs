@@ -10,9 +10,7 @@ namespace CA1
 {
     class MainClass
     {
-
-        //static readonly string pathOut = @"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/output.csv";
-
+        
         public static void Main(string[] args)
         {
             Console.WriteLine("Please hold, working!");
@@ -29,7 +27,7 @@ namespace CA1
             foreach (var line in fileLines)
             {
                 string[] commitLines = line.Split(new string[] { " | " }, StringSplitOptions.RemoveEmptyEntries);
-                using (StreamWriter file = new StreamWriter(@"/Users/mpreston/Documents/code/college/Advanced-Web-Programming/CA1/CA1/output.csv"))
+                using (StreamWriter file = new StreamWriter("../../output.csv"))
                 {
                     foreach (string s in fileLines)
                     {
@@ -40,8 +38,6 @@ namespace CA1
                     }
 
                 }
-
-
 
             }
             Console.WriteLine("Finished");
@@ -54,21 +50,6 @@ namespace CA1
                 return reader.ReadToEnd();
             }
         }
-
-        //public static List<string[]> ReadCommitLines(string fileName) 
-        //{
-        //    var lines = new List<string[]>();
-        //    using (var reader = new StreamReader(fileName))
-        //    {
-        //        string line = "";
-        //        while ((line = reader.ReadLine()) != null)
-        //        {
-        //            string[] values = line.Split(new[] { " | " }, StringSplitOptions.None);
-        //            lines.Add(values);
-        //        }
-        //    }
-        //    return lines;
-        //}
 
     }
 }
