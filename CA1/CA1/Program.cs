@@ -21,9 +21,6 @@ namespace CA1
 
             string splitString = "------------------------------------------------------------------------\n";
             string[] fileLines = fileContents.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries);
-
-
-
             foreach (var line in fileLines)
             {
                 string[] commitLines = line.Split(new string[] { " | " }, StringSplitOptions.RemoveEmptyEntries);
