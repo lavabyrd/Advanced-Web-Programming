@@ -26,6 +26,7 @@ namespace CA1
                 string[] commitLines = line.Split(new string[] { " | " }, StringSplitOptions.RemoveEmptyEntries);
                 using (StreamWriter file = new StreamWriter("../../output.csv"))
                 {
+                    file.WriteLine("Revision ID,Author,Date Submitted,Commit Lines and Commit Messages");
                     foreach (string s in fileLines)
                     {
                         
