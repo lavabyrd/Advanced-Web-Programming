@@ -1,0 +1,41 @@
+Assignment 3 - A 10 Function Calculator (10%):
+
+
+
+Based on the Calculator Example in the class lectures and practical you are expected to improve upon the calculator class and testsuite to deliver functionality and associated testsuites for 10 functions that one would expect to find on a scientific calculator.
+
+
+
+Covered in class were functions for:
+
+add
+subtract
+multiply
+
+
+Possible ideas for expanded functionality:
+
+divide
+exponentiate
+square root
+square
+cube
+cube root
+etc...
+Please ensure your python code is in calculator.py, calculator_app.py, and test_calculator.py,  and that they run.
+
+
+
+Please then proceed to port your code to the C# programming language and have solutions for Caclulator.cs, CalculatorTests.cs, CalculatorApp.cs
+
+
+
+Please also ensure that your code is properly formatted and documented with sufficient tests to cover all possible scenarios.
+
+
+
+Please commit your code to your github repository and post the link to the github repository into moodle.
+
+
+
+The deadline is the 21st January 2018 on moodle @ 23:55.
