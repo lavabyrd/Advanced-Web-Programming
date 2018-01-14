@@ -4,6 +4,7 @@ class Calculator:
         self.__input = '0'
         self.__operation = ''
 
+
     def add(self, first, second):
         return first + second
 
@@ -12,6 +13,9 @@ class Calculator:
 
     def subtract(self, first, second):
         return first - second
+
+    def division(self, first, second):
+        return first / second
 
     def input(self, value):
         if value == '#':
@@ -25,6 +29,8 @@ class Calculator:
             self.__operation = value
         elif value == '*':
             self.__operation = value
+        elif value == '/':
+            self.__operation = value
 
 
         # values to be shown after operator
@@ -35,6 +41,8 @@ class Calculator:
                 self.__input = str(self.subtract(int(self.__input), int(value)))
             elif self.__operation == '*':
                 self.__input = str(self.multiply(int(self.__input), int(value)))
+            elif self.__operation == '/':
+                self.__input = str(self.division(int(self,__input), int(value)))
             else:
                 return "invalid operator"
 
