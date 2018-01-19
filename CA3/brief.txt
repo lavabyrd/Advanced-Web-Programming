@@ -2,7 +2,8 @@ Assignment 3 - A 10 Function Calculator (10%):
 
 
 
-Based on the Calculator Example in the class lectures and practical you are expected to improve upon the calculator class and testsuite to deliver functionality and associated testsuites for 10 functions that one would expect to find on a scientific calculator.
+Based on the Calculator Example in the class lectures and practical you are expected to improve upon the calculator class
+and testsuite to deliver functionality and associated testsuites for 10 functions that one would expect to find on a scientific calculator.
 
 
 
