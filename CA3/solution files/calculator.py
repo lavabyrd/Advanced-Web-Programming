@@ -1,4 +1,5 @@
 import math
+from math import sqrt, log
 
 
 class Calculator:
@@ -19,12 +20,28 @@ class Calculator:
     def division(self, first, second):
         return first / second
 
+    # this takes the first value and uses the second value for the power of value
     def exponent(self, first, second):
         return first ** second
 
+    # returns the square root of the value entered before it
     def squaretroot(self, first):
-        return math.sqrt(first)
+        return sqrt(first)
 
+    # returns the cubed root of the value entered before it
+    def cubedroot(self, first):
+        return first ** (1.0/3.0)
+
+    def square(self, first):
+        return first * first
+
+    def cube(self, first):
+        return first * first * first
+
+    def nlog(self,first):
+        return log(first)
+
+    # working functionality of app begins here
     def input(self, value):
         if value == '#':
             self.__input = '0'
@@ -43,7 +60,15 @@ class Calculator:
         elif value == 'sqr':
             # print self.__input
             # self.__input = float(self.__input)
-            self.__input = str(math.sqrt(float(self.__input)))
+            self.__input = str(self.squaretroot(float(self.__input)))
+        elif value == 'cbr':
+            self.__input = str(self.cubedroot(float(self.__input)))
+        elif value == 'squared':
+            self.__input = str(self.square(float(self.__input)))
+        elif value == 'cubed':
+            self.__input = str(self.cube(float(self.__input)))
+        elif value == 'nlog':
+            self.__input = str(self.nlog(float(self.__input)))
 
         # values to be shown after operator
         elif self.__operation != '':
@@ -68,9 +93,10 @@ class Calculator:
         if self.__input == '0E':
             return 0
 
-        return self.__input
-        # else:
-        #     try:
-        #         int(self.__input)
-        #     except ValueError:
-        #         self.__input
+        # handles conversion of self.__input back to not having a trailing 0 if its a whole number
+        try:
+            if float(self.__input).is_integer() == True:
+                self.__input = str(int(float(self.__input)))
+                return self.__input
+        except:
+            return self.__input

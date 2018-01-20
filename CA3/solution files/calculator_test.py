@@ -34,7 +34,7 @@ class CalculatorTest(unittest.TestCase):
 
     def testInitialOutput(self):
         calculator = Calculator()
-        self.assertEqual(0, calculator.getOutput())
+        self.assertEqual('', calculator.getOutput())
         
     def testAddInput(self):
         calculator = Calculator()
@@ -42,27 +42,27 @@ class CalculatorTest(unittest.TestCase):
         calculator.input(2)
         calculator.input(5)
         calculator.input(9)
-        self.assertEqual(1259, calculator.getOutput())
+        self.assertEqual('1259', calculator.getOutput())
         calculator.input('#')
-        self.assertEqual(0, calculator.getOutput())
+        self.assertEqual('0', calculator.getOutput())
 
     def testAddZeroes(self):
         calculator = Calculator()
         calculator.input(0)
         calculator.input(0)
         calculator.input(0)
-        self.assertEqual(0, calculator.getOutput())
+        self.assertEqual('0', calculator.getOutput())
 
     def testAddition(self):
         calculator = Calculator()
         calculator.input(5)
         calculator.input('+')
         calculator.input('7')
-        self.assertEqual(12, calculator.getOutput())
+        self.assertEqual('12', calculator.getOutput())
 
     def testExit(self):
         calculator = Calculator()
         calculator.input('E')
-        self.assertEqual(0, calculator.getOutput())
+        self.assertEqual('E', calculator.getOutput())
 
 unittest.main()
