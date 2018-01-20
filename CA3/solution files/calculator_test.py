@@ -1,6 +1,7 @@
 import unittest
 from calculator import Calculator
 
+
 class CalculatorTest(unittest.TestCase):
     def testAdd(self):
         calculator = Calculator()
@@ -34,7 +35,7 @@ class CalculatorTest(unittest.TestCase):
 
     def testInitialOutput(self):
         calculator = Calculator()
-        self.assertEqual('', calculator.getOutput())
+        self.assertEqual('Invalid choice', calculator.getOutput())
         
     def testAddInput(self):
         calculator = Calculator()
@@ -60,9 +61,49 @@ class CalculatorTest(unittest.TestCase):
         calculator.input('7')
         self.assertEqual('12', calculator.getOutput())
 
+    def testSquare(self):
+        calculator = Calculator()
+        calculator.input(4)
+        calculator.input('squared')
+        self.assertEquals('16', calculator.getOutput())
+
+    def testCube(self):
+        calculator = Calculator()
+        calculator.input(3)
+        calculator.input('cubed')
+        self.assertEquals('27', calculator.getOutput())
+
+    def testSquareroot(self):
+        calculator = Calculator()
+        calculator.input(9)
+        calculator.input('sqr')
+        self.assertEquals('3', calculator.getOutput())
+
+    def testCuberoot(self):
+        calculator = Calculator()
+        calculator.input(8)
+        calculator.input('cbr')
+        self.assertEquals('2', calculator.getOutput())
+
+    def testExponent(self):
+        calculator = Calculator()
+        calculator.input(2)
+        calculator.input('**')
+        calculator.input(6)
+        self.assertEquals('64', calculator.getOutput())
+
+    def testLog(self):
+        calculator = Calculator()
+        calculator.input(4)
+        calculator.input('nlog')
+        self.assertEquals('1.38629436112', calculator.getOutput())
+
     def testExit(self):
         calculator = Calculator()
         calculator.input('E')
-        self.assertEqual('E', calculator.getOutput())
+        self.assertEqual('exiting', calculator.getOutput())
+
+
+
 
 unittest.main()
