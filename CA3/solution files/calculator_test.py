@@ -101,7 +101,7 @@ class CalculatorTest(unittest.TestCase):
     def testExit(self):
         calculator = Calculator()
         calculator.input('E')
-        self.assertEqual('exiting', calculator.getOutput())
+        self.assertEqual('Invalid choice', calculator.getOutput())
 
 
 

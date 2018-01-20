@@ -48,7 +48,8 @@ class Calculator:
     def input(self, value):
         if value == '#':
             self.__input = '0'
-
+        elif value == 'E':
+            return "exiting"
         # valid operators
         elif value == '+':
             self.__operation = value
@@ -94,7 +95,7 @@ class Calculator:
             return 0
 
         # controls the exiting of the program
-        elif self.__input == 'E':
+        elif self.__input.endswith('E'):
             return "exiting"
 
         # handles conversion of self.__input back to not having a trailing 0 if its a whole number
@@ -107,6 +108,6 @@ class Calculator:
                     return self.__input
 
             # checks for invalid choice and resets the value of the input
-            except ValueError:
+            except:
                 return "Invalid choice"
                 self.__input = 0;
