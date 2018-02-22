@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 namespace Horse_tips
 {
     public static class Startup
@@ -35,7 +36,7 @@ namespace Horse_tips
             }
             catch (Exception ex)
             {
-                Console.WriteLine("error is ");
+                Console.WriteLine("error is " + ex);
                 Start();
             }
         }
@@ -44,8 +45,9 @@ namespace Horse_tips
         public static void TakeAction(int parseAnswer) {
             if (parseAnswer == 1)
             {
-                long x = DBConnectionClass.DbCount();
-                Console.WriteLine(x);
+                Task x = DBConnectionClass.DbQuery();
+                //Console.WriteLine(x);
+                Console.Read();
                 Start();
             }
             else if (parseAnswer == 2)
