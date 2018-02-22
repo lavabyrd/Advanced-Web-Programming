@@ -59,6 +59,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DBConnectionClass.cs" />
+    <Compile Include="FileControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
