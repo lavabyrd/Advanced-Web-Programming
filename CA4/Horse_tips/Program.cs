@@ -11,11 +11,15 @@ namespace Horse_tips
 {
     class MainClass
     {
+        
+
         public static void Main(string[] args)
         {
-            string outname = FileControl.FileGrab();
-            string fileContents = FileControl.ReadFile(outname);
-            string[] output = FileControl.ParseFile(fileContents); 
+            Startup.Start();
+
+            //string outname = FileControl.FileGrab();
+            //string fileContents = FileControl.ReadFile(outname);
+            //string[] output = FileControl.ParseFile(fileContents); 
         }
     }
 }
