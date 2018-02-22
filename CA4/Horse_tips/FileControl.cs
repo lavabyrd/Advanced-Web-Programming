@@ -2,11 +2,14 @@
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using MongoDB.Driver;
 using MongoDB.Bson;
 namespace Horse_tips
 {
+    
     public static class FileControl
     {
+        
         public static string FileGrab()
         {
             Console.WriteLine("Please hold, working!");
@@ -44,7 +47,7 @@ namespace Horse_tips
                     {"AmountWon", AmountWon},
                     {"Result", Result}
                 };
-                DBConnectionClass.DbConnect(docu);
+                DBConnectionClass.DbCSVUpload(docu);
                 Console.WriteLine(CourseName + " Added");
             }
             return fileLines;
