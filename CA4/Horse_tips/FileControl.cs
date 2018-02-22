@@ -36,13 +36,13 @@ namespace Horse_tips
                 // take each entry and do something
                 string CourseName = entry[0];
                 string DateRan = entry[1] + "-" + entry[2] + "-" + entry[3];
-                string AmountWon = entry[4];
+                string Amount = entry[4];
                 string Result = entry[5];
 
                 BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
-                    {"AmountWon", AmountWon},
+                    {"Amount", Amount},
                     {"Result", Result}
                 };
                 DBInteractionClass.DbCSVUpload(docu);

@@ -61,6 +61,7 @@
     <Compile Include="DBInteractionClass.cs" />
     <Compile Include="FileControl.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Upload.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
