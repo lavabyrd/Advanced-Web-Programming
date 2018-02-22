@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Horse_tips
+﻿namespace Horse_tips
 {
     class MainClass
     {

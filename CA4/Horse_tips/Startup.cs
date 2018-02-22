@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+
+
 namespace Horse_tips
 {
     public static class Startup
@@ -11,7 +13,8 @@ namespace Horse_tips
             Console.WriteLine("1: View current stored data");
             Console.WriteLine("2: Remove current data from the database");
             Console.WriteLine("3: Re-upload the CSV File again");
-            Console.WriteLine("4: Exit");
+            Console.WriteLine("4: Filter by x");
+            Console.WriteLine("5: Exit");
             string answer = Console.ReadLine();
 
             Selection(answer);
@@ -23,7 +26,7 @@ namespace Horse_tips
             try
             {
                 int parseAnswer = int.Parse(answer);
-                if (parseAnswer < 1 || parseAnswer > 4)
+                if (parseAnswer < 1 || parseAnswer > 5)
                 {
                     Console.WriteLine("Try another Selection");
                     Start();
@@ -45,15 +48,15 @@ namespace Horse_tips
         public static void TakeAction(int parseAnswer) {
             if (parseAnswer == 1)
             {
-                Task x = DBConnectionClass.DbQuery();
+                Task x = DBInteractionClass.DbQuery();
                 //Console.WriteLine(x);
                 Console.Read();
                 Start();
             }
             else if (parseAnswer == 2)
             {
-                Console.WriteLine("not currently implemented");
-                Console.WriteLine("back to the start we go!");
+                Console.WriteLine("Erasing all stored info");
+                DBInteractionClass.DbWipe();
                 Start();
             }
             else if (parseAnswer == 3)
@@ -63,6 +66,12 @@ namespace Horse_tips
                 string[] output = FileControl.ParseFile(fileContents);
                 Console.WriteLine("upload done!");
                 Console.WriteLine("back to the start we go!");
+                Start();
+            }
+            else if (parseAnswer == 4)
+            {
+                Task x = DBInteractionClass.DbFilter();
+                Console.Read();
                 Start();
             }
             else

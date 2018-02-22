@@ -7,30 +7,33 @@ using System.Collections.Generic;
 
 namespace Horse_tips
 {
-    public static class DBConnectionClass
+    public static class DBInteractionClass
     {
-
+        // looks after the uploading of the CSV File. If files aleady exist, deletes all and then uploads the file
         public static void DbCSVUpload(BsonDocument docu)
         {
             MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
-            // needs to be renamed as may cause categorization error
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+
             collec.InsertOne(docu);
-
-
         }
-
-        public static long DbCount()
+        // checks the count of items in the collection
+        public static void DbWipe()
         {
             MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
-            long pu = collec.Count(new BsonDocument());
+            long count = collec.Count(new BsonDocument());
+            if (count > 1)
+            {
+                database.DropCollection("TestHorseRaceCollection");
+                Console.WriteLine("deleting");
+                Console.Read();
+            }
 
-            return pu;
         }
-
+        // queries the collect and returns all item writing just the coursename
         public static async Task DbQuery() {
             MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
@@ -42,12 +45,24 @@ namespace Horse_tips
                     IEnumerable<BsonDocument> batch = cursor.Current;
                     foreach (BsonDocument document in batch)
                     {
+                        // needs to check if nothing found
                         Console.WriteLine(document["CourseName"]);
                     }
                 }
             }
         }
+        // queries based on a choice of parameters
+        public static async Task DbFilter() {
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
+            IMongoDatabase database = client.GetDatabase("todompreston");
+            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
 
+            BsonDocument filter = new BsonDocument("Result", "true");
+
+            await collec.Find(filter)
+                .ForEachAsync(document => Console.WriteLine(document["CourseName"]));
+
+        }
 
     }
 }

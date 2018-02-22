@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using MongoDB.Driver;
 using MongoDB.Bson;
+
 namespace Horse_tips
 {
     
@@ -47,7 +45,7 @@ namespace Horse_tips
                     {"AmountWon", AmountWon},
                     {"Result", Result}
                 };
-                DBConnectionClass.DbCSVUpload(docu);
+                DBInteractionClass.DbCSVUpload(docu);
                 Console.WriteLine(CourseName + " Added");
             }
             return fileLines;
