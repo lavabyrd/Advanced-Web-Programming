@@ -12,15 +12,15 @@ namespace Horse_tips
 {
     class MainClass
     {
-
+        
 
         public static void Main(string[] args)
         {
-            string db = ConfigurationManager.AppSettings["dbURI"];
+            //string db = ConfigurationManager.AppSettings["dbURI"];
 
             string outname = FileGrab();
             string fileContents = ReadFile(outname);
-            string[] output = ParseFile(fileContents, db); 
+            string[] output = ParseFile(fileContents); 
         }
 
         public static string ReadFile(string fileName)
@@ -33,12 +33,20 @@ namespace Horse_tips
         }
 
 
-
-        public static string[] ParseFile(string contents, string db)
+        public static string DbConnect(BsonDocument docu) 
         {
-            MongoClient client = new MongoClient(db);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+            collec.InsertOne(docu);
+            return "OK";
+        }
+
+
+
+        public static string[] ParseFile(string contents)
+        {
+            
 
             string splitString = "\n";
             string[] fileLines = contents.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries);
@@ -52,14 +60,14 @@ namespace Horse_tips
                 string AmountWon = entry[4];
                 string Result = entry[5];
 
-                var docu = new BsonDocument{
+                BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
                     {"AmountWon", AmountWon},
                     {"Result", Result}
                 };
 
-                collec.InsertOne(docu);
+                DbConnect(docu);
                 //Console.Read();
                 Console.WriteLine(CourseName + " Added");
 
