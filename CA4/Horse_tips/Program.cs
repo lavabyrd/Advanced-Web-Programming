@@ -4,17 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Horse_tips
 {
     class MainClass
     {
+
+
         public static void Main(string[] args)
         {
-            var outname = FileGrab();
-            var fileContents = ReadFile(outname);
-            var output = ParseFile(fileContents); 
+            string db = ConfigurationManager.AppSettings["dbURI"];
 
+            string outname = FileGrab();
+            string fileContents = ReadFile(outname);
+            string[] output = ParseFile(fileContents, db); 
         }
 
         public static string ReadFile(string fileName)
@@ -25,15 +31,41 @@ namespace Horse_tips
             }
 
         }
-        public static string[] ParseFile(string contents)
+
+
+
+        public static string[] ParseFile(string contents, string db)
         {
+            MongoClient client = new MongoClient(db);
+            IMongoDatabase database = client.GetDatabase("todompreston");
+            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+
             string splitString = "\n";
             string[] fileLines = contents.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in fileLines)
             {
-                Console.WriteLine(line);
-                string[] entry = line.Split(new string[] { ","}, StringSplitOptions.RemoveEmptyEntries);
-                return entry;
+                string l = line.Replace("(", "").Replace(")", ",").Replace(" ", "");
+                string[] entry = l.Split(new string[] { ","}, StringSplitOptions.RemoveEmptyEntries);
+                // take each entry and do something
+                string CourseName = entry[0];
+                string DateRan = entry[1] + "-" + entry[2] + "-" + entry[3];
+                string AmountWon = entry[4];
+                string Result = entry[5];
+
+                var docu = new BsonDocument{
+                    {"CourseName", CourseName},
+                    {"DateRan", DateRan},
+                    {"AmountWon", AmountWon},
+                    {"Result", Result}
+                };
+
+                collec.InsertOne(docu);
+                //Console.Read();
+                Console.WriteLine(CourseName + " Added");
+
+
+
+
             }
             return fileLines;
 
