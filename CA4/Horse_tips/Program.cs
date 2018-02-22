@@ -6,18 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace Horse_tips
 {
     class MainClass
     {
-        
-
         public static void Main(string[] args)
         {
-            //string db = ConfigurationManager.AppSettings["dbURI"];
-
             string outname = FileGrab();
             string fileContents = ReadFile(outname);
             string[] output = ParseFile(fileContents); 
@@ -29,25 +24,11 @@ namespace Horse_tips
             {
                 return reader.ReadToEnd();
             }
-
         }
-
-
-        public static string DbConnect(BsonDocument docu) 
-        {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
-            IMongoDatabase database = client.GetDatabase("todompreston");
-            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
-            collec.InsertOne(docu);
-            return "OK";
-        }
-
 
 
         public static string[] ParseFile(string contents)
         {
-            
-
             string splitString = "\n";
             string[] fileLines = contents.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in fileLines)
@@ -66,14 +47,8 @@ namespace Horse_tips
                     {"AmountWon", AmountWon},
                     {"Result", Result}
                 };
-
-                DbConnect(docu);
-                //Console.Read();
+                DBConnectionClass.DbConnect(docu);
                 Console.WriteLine(CourseName + " Added");
-
-
-
-
             }
             return fileLines;
 
