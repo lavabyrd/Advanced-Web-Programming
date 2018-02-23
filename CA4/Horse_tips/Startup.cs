@@ -13,9 +13,9 @@ namespace Horse_tips
             Console.WriteLine("1: View current stored data [ check ]");
             Console.WriteLine("2: Remove current data from the database");
             Console.WriteLine("3: Re-upload the CSV File again");
-            Console.WriteLine("4: Filter by x");
+            Console.WriteLine("4: Filter by {$placeholder}");
             Console.WriteLine("5: Upload data");
-            Console.WriteLine("5: Exit");
+            Console.WriteLine("6: Exit");
             string answer = Console.ReadLine();
 
             Selection(answer);
@@ -33,7 +33,6 @@ namespace Horse_tips
                 }
                 else
                 {
-                    
                     TakeAction(parseAnswer);
                 }
             }
@@ -46,41 +45,38 @@ namespace Horse_tips
 
 
         public static void TakeAction(int parseAnswer) {
-            if (parseAnswer == 1)
+            switch (parseAnswer)
             {
-                Task x = DBInteractionClass.DbQuery();
-                //Console.WriteLine(x);
-                Console.Read();
-                Start();
-            }
-            else if (parseAnswer == 2)
-            {
-                Console.WriteLine("Erasing all stored info");
-                DBInteractionClass.DbWipe();
-                Start();
-            }
-            else if (parseAnswer == 3)
-            {
-                string outname = FileControl.FileGrab();
-                string fileContents = FileControl.ReadFile(outname);
-                string[] output = FileControl.ParseFile(fileContents);
-                Console.WriteLine("upload done!");
-                Console.WriteLine("back to the start we go!");
-                Start();
-            }
-            else if (parseAnswer == 4)
-            {
-                Task x = DBInteractionClass.DbFilter();
-                Console.Read();
-                Start();
-            }
-            else if (parseAnswer == 5)
-            {
-                Upload.EntryUpload();
-            }
-            else
-            {
-                Environment.Exit(1);
+                case 1:
+                    Task x = DBInteractionClass.DbQuery();
+                    //Console.WriteLine(x);
+                    Console.Read();
+                    Start();
+                    break;
+                case 2:
+                    Console.WriteLine("Erasing all stored info");
+                    DBInteractionClass.DbWipe();
+                    Start();
+                    break;
+                case 3:
+                    string outname = FileControl.FileGrab();
+                    string fileContents = FileControl.ReadFile(outname);
+                    string[] output = FileControl.ParseFile(fileContents);
+                    Console.WriteLine("upload done!");
+                    Console.WriteLine("back to the start we go!");
+                    Start();
+                    break;
+                case 4:
+                    Task filter = DBInteractionClass.DbFilter();
+                    Console.Read();
+                    Start();
+                    break;
+                case 5:
+                    Upload.EntryUpload();
+                    break;
+                default:
+                    Environment.Exit(1);
+                    break;
             }
         }
     }
