@@ -16,15 +16,11 @@ namespace Horse_tips
             Console.WriteLine("Result:(won or lost)");
             string res = Console.ReadLine();
 
-
-
-            bool result = ResCheck(res);
-
             BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
-                    {"AmountWon", Amount},
-                    {"Result", result}
+                    {"AmountWon", FileControl.AmountParse(Amount)},
+                    {"Result", ResCheck(res)}
                 };
             DBInteractionClass.DbCSVUpload(docu);
             Console.WriteLine("docu added " + docu);

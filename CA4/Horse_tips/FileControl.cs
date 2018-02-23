@@ -62,7 +62,7 @@ namespace Horse_tips
             {
                 Console.WriteLine("Invalid Amount entered: " + amount);
                 Console.WriteLine("Try again");
-                return 1.11;
+                return 0.00;
             }
 
         }
