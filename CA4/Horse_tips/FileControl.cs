@@ -41,7 +41,7 @@ namespace Horse_tips
                 BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
-                    {"Amount", Amount},
+                    {"Amount", AmountParse(Amount)},
                     {"Result", resultBoolCheck(Result)}
                 };
                 DBInteractionClass.DbCSVUpload(docu);
@@ -49,6 +49,25 @@ namespace Horse_tips
             }
             return fileLines;
         }
+
+        public static double AmountParse(string amount) {
+
+            try
+            {
+                amount = amount.Replace("m", "");
+                double AmountOut = Double.Parse(amount);
+                return AmountOut;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Amount entered: " + amount);
+                Console.WriteLine("Try again");
+                return 1.11;
+            }
+
+        }
+
+
 
         public static bool resultBoolCheck(string Result) {
             if (Result == "true")
