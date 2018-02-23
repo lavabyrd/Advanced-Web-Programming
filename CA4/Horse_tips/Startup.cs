@@ -15,7 +15,8 @@ namespace Horse_tips
             Console.WriteLine("3: Re-upload the CSV File again");
             Console.WriteLine("4: Filter by {$placeholder}");
             Console.WriteLine("5: Upload data");
-            Console.WriteLine("6: Exit");
+            Console.WriteLine("6: Output data to a text file");
+            Console.WriteLine("7: Exit");
             string answer = Console.ReadLine();
 
             Selection(answer);
@@ -26,7 +27,7 @@ namespace Horse_tips
             try
             {
                 int parseAnswer = int.Parse(answer);
-                if (parseAnswer < 1 || parseAnswer > 6)
+                if (parseAnswer < 1 || parseAnswer > 7)
                 {
                     Console.WriteLine("Try another Selection");
                     Start();
@@ -73,6 +74,10 @@ namespace Horse_tips
                     break;
                 case 5:
                     Upload.EntryUpload();
+                    break;
+                case 6:
+                    // output data from the DB to a text file
+                    Console.WriteLine("not currently implemented");
                     break;
                 default:
                     Environment.Exit(1);
