@@ -4,10 +4,8 @@ using MongoDB.Bson;
 
 namespace Horse_tips
 {
-    
     public static class FileControl
     {
-        
         public static string FileGrab()
         {
             Console.WriteLine("Please hold, working!");
@@ -24,7 +22,7 @@ namespace Horse_tips
                 return reader.ReadToEnd();
             }
         }
-
+        // Parse file Method
         public static string[] ParseFile(string contents)
         {
             string splitString = "\n";
@@ -39,17 +37,28 @@ namespace Horse_tips
                 string Amount = entry[4];
                 string Result = entry[5];
 
+
                 BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
                     {"Amount", Amount},
-                    {"Result", Result}
+                    {"Result", resultBoolCheck(Result)}
                 };
                 DBInteractionClass.DbCSVUpload(docu);
                 Console.WriteLine(CourseName + " Added");
             }
             return fileLines;
+        }
 
+        public static bool resultBoolCheck(string Result) {
+            if (Result == "true")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
