@@ -20,11 +20,8 @@ namespace Horse_tips
             string answer = Console.ReadLine();
 
 
-            ////
-            //decimal dec = 123.00M;
-            //string uk = dec.ToString("C", new CultureInfo("en-GB"); // uk holds "£123.00"
-            //string us = dec.ToString("C", new CultureInfo("en-US"); // us holds "$123.00"
-            //Selection(answer);
+
+            Selection(answer);
         }
 
         public static void Selection(string answer)
@@ -55,7 +52,6 @@ namespace Horse_tips
             {
                 case 1:
                     Task x = DBInteractionClass.DbQuery();
-                    //Console.WriteLine(x);
                     Console.Read();
                     Start();
                     break;

@@ -32,21 +32,18 @@ namespace Horse_tips
             string resLower = res.ToLower();
             Console.WriteLine(resLower + " this is res lower");
 
-            if (resLower == "won")
+            switch (resLower)
             {
-                return true;
-            
+                case "won":
+                    return true;
+                case "lost":
+                    return false;
+                default:
+                    Console.WriteLine("Sorry, I didn't understand the result, please try again");
+                    Startup.Start();
+                    break;
             }
-            else if (resLower == "lost")
-            {
-                return false;
 
-            }
-            else {
-                Console.WriteLine("Sorry, I didn't understand the result, please try again");
-                Startup.Start();
-
-            }
             return false;
 
         }

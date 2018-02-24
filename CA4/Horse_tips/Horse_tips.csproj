@@ -63,6 +63,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Upload.cs" />
     <Compile Include="ParseControl.cs" />
+    <Compile Include="DBConnectionClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

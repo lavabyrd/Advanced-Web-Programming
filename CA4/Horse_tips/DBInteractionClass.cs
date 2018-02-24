@@ -9,12 +9,11 @@ namespace Horse_tips
 {
     public static class DBInteractionClass
     {
+        
         // looks after the uploading of the CSV File. If files aleady exist, deletes all and then uploads the file
         public static void DbCSVUpload(BsonDocument docu)
         {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRWUser"]);
-            IMongoDatabase database = client.GetDatabase("todompreston");
-            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+            IMongoCollection<BsonDocument> collec = DBConnectionClass.DBConnectReadWrite();
 
             collec.InsertOne(docu);
         }
@@ -35,9 +34,7 @@ namespace Horse_tips
         }
         // queries the collect and returns all item writing just the coursename
         public static async Task DbQuery() {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRUser"]);
-            IMongoDatabase database = client.GetDatabase("todompreston");
-            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+            IMongoCollection<BsonDocument> collec = DBConnectionClass.DBConnectRead();
             using (IAsyncCursor<BsonDocument> cursor = await collec.FindAsync(new BsonDocument()))
             {
                 while (await cursor.MoveNextAsync())
@@ -53,9 +50,7 @@ namespace Horse_tips
         }
         // queries based on a choice of parameters
         public static async Task DbFilter() {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRUser"]);
-            IMongoDatabase database = client.GetDatabase("todompreston");
-            IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
+            IMongoCollection<BsonDocument> collec = DBConnectionClass.DBConnectRead();
 
             BsonDocument filter = new BsonDocument("Result", "true");
 
@@ -63,6 +58,13 @@ namespace Horse_tips
                 .ForEachAsync(document => Console.WriteLine(document["CourseName"]));
 
         }
+
+        // report to show years , Total Won and Total Lost
+        //public static async Task DbFilterYear() {
+        //    IMongoCollection<BsonDocument> collec = DBConnectionClass.DBConnectRead();
+
+            
+        //}
 
     }
 }
