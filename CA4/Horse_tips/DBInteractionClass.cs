@@ -12,7 +12,7 @@ namespace Horse_tips
         // looks after the uploading of the CSV File. If files aleady exist, deletes all and then uploads the file
         public static void DbCSVUpload(BsonDocument docu)
         {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRWUser"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
 
@@ -21,7 +21,7 @@ namespace Horse_tips
         // checks the count of items in the collection
         public static void DbWipe()
         {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRWUser"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
             long count = collec.Count(new BsonDocument());
@@ -35,7 +35,7 @@ namespace Horse_tips
         }
         // queries the collect and returns all item writing just the coursename
         public static async Task DbQuery() {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRUser"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
             using (IAsyncCursor<BsonDocument> cursor = await collec.FindAsync(new BsonDocument()))
@@ -53,7 +53,7 @@ namespace Horse_tips
         }
         // queries based on a choice of parameters
         public static async Task DbFilter() {
-            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbURI"]);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["dbRUser"]);
             IMongoDatabase database = client.GetDatabase("todompreston");
             IMongoCollection<BsonDocument> collec = database.GetCollection<BsonDocument>("TestHorseRaceCollection");
 

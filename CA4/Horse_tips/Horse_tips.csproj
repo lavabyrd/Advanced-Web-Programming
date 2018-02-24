@@ -62,6 +62,7 @@
     <Compile Include="FileControl.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Upload.cs" />
+    <Compile Include="ParseControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

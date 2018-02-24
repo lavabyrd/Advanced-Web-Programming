@@ -19,7 +19,7 @@ namespace Horse_tips
             BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
                     {"DateRan", DateRan},
-                    {"AmountWon", FileControl.AmountParse(Amount)},
+                    {"AmountWon", ParseControl.AmountParse(Amount)},
                     {"Result", ResCheck(res)}
                 };
             DBInteractionClass.DbCSVUpload(docu);

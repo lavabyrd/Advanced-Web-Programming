@@ -19,7 +19,12 @@ namespace Horse_tips
             Console.WriteLine("7: Exit");
             string answer = Console.ReadLine();
 
-            Selection(answer);
+
+            ////
+            //decimal dec = 123.00M;
+            //string uk = dec.ToString("C", new CultureInfo("en-GB"); // uk holds "£123.00"
+            //string us = dec.ToString("C", new CultureInfo("en-US"); // us holds "$123.00"
+            //Selection(answer);
         }
 
         public static void Selection(string answer)

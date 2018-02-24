@@ -14,7 +14,7 @@ namespace Horse_tips
             var fileName = Path.Combine(directory.FullName, "../../data.csv");
             return fileName;
         }
-
+        // should check the file has entries and is valid
         public static string ReadFile(string fileName)
         {
             using (var reader = new StreamReader(fileName))
@@ -33,6 +33,8 @@ namespace Horse_tips
                 string[] entry = l.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 // take each entry and do something
                 string CourseName = entry[0];
+
+                // Date comes in year/month/day, parse using DateTime.Parse and then .ToShortDateString().
                 string DateRan = entry[1] + "-" + entry[2] + "-" + entry[3];
                 string Amount = entry[4];
                 string Result = entry[5];
@@ -40,44 +42,14 @@ namespace Horse_tips
 
                 BsonDocument docu = new BsonDocument{
                     {"CourseName", CourseName},
-                    {"DateRan", DateRan},
-                    {"Amount", AmountParse(Amount)},
-                    {"Result", resultBoolCheck(Result)}
+                    {"DateRan", ParseControl.DateParse(DateRan)},
+                    {"Amount", ParseControl.AmountParse(Amount)},
+                    {"Result", ParseControl.resultBoolCheck(Result)}
                 };
                 DBInteractionClass.DbCSVUpload(docu);
                 Console.WriteLine(CourseName + " Added");
             }
             return fileLines;
-        }
-
-        public static double AmountParse(string amount) {
-
-            try
-            {
-                amount = amount.Replace("m", "");
-                double AmountOut = Double.Parse(amount);
-                return AmountOut;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Amount entered: " + amount);
-                Console.WriteLine("Try again");
-                return 0.00;
-            }
-
-        }
-
-
-
-        public static bool resultBoolCheck(string Result) {
-            if (Result == "true")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }
